@@ -5,7 +5,7 @@ const shutterButton = document.getElementById('shutter');
 const imageCountDisplay = document.getElementById('image-count');
 const capturedImagesContainer = document.getElementById('captured-images');
 const fileInput = document.getElementById('file-input');
-const uploadForm = document.getElementById('upload-form');
+// const uploadForm = document.getElementById('upload-form');
 const gallery = document.getElementById('gallery-view');
 
 let stream = null;
