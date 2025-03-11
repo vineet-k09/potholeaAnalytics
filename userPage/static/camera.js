@@ -6,6 +6,7 @@ const imageCountDisplay = document.getElementById('image-count');
 const capturedImagesContainer = document.getElementById('captured-images');
 const fileInput = document.getElementById('file-input');
 const uploadForm = document.getElementById('upload-form');
+const gallery = document.getElementById('gallery-view');
 
 let stream = null;
 let width = window.innerWidth;
@@ -14,31 +15,35 @@ let streaming = false;
 let capturedImages = [];
 const maxImages = 5;
 
-// Open Camera
+// ✅ Open Camera
 openCameraButton.addEventListener('click', async () => {
     try {
         stream = await navigator.mediaDevices.getUserMedia({ video: true });
         cameraVideoStream.srcObject = stream;
-        cameraVideoStream.hidden = false; // Show preview
-        openCameraButton.disabled = true;
-        closeCameraButton.disabled = false;
+        cameraVideoStream.style.display = "block"; // Show camera
+        openCameraButton.style.display = "none"; // Hide Open button
+        closeCameraButton.style.display = "inline-block"; // Show Close button
+        shutterButton.style.display = "inline-block"; // Show Capture button
+        imageCountDisplay.style.display = "block"; // Show Image count
+        gallery.style.display = "block"; // Show Gallery
     } catch (error) {
         console.error('Error accessing the camera:', error);
     }
 });
 
-// Close Camera
+// ✅ Close Camera
 closeCameraButton.addEventListener('click', () => {
     if (stream) {
-        stream.getTracks().forEach(track => track.stop()); // Stop the stream
+        stream.getTracks().forEach(track => track.stop()); // Stop stream
         cameraVideoStream.srcObject = null;
-        cameraVideoStream.hidden = true; // Hide preview
-        openCameraButton.disabled = false;
-        closeCameraButton.disabled = true;
+        cameraVideoStream.style.display = "none"; // Hide camera
     }
+    openCameraButton.style.display = "inline-block"; // Show Open button
+    closeCameraButton.style.display = "none"; // Hide Close button
+    shutterButton.style.display = "none"; // Hide Capture button
 });
 
-// Ensure correct video and canvas size
+// ✅ Adjust video size
 cameraVideoStream.addEventListener("canplay", () => {
     if (!streaming) {
         height = cameraVideoStream.videoHeight / (cameraVideoStream.videoWidth / width);
@@ -48,7 +53,7 @@ cameraVideoStream.addEventListener("canplay", () => {
     }
 });
 
-// Capture Image
+// ✅ Capture Image
 function captureImage() {
     if (!streaming || capturedImages.length >= maxImages) return;
 
@@ -63,7 +68,7 @@ function captureImage() {
     updateGallery();
 }
 
-// Update Captured Images Gallery
+// ✅ Update Gallery
 function updateGallery() {
     capturedImagesContainer.innerHTML = "";
     capturedImages.forEach((image, index) => {
@@ -78,25 +83,7 @@ function updateGallery() {
     imageCountDisplay.innerText = `Captured: ${capturedImages.length} / ${maxImages}`;
 }
 
-// Attach images to form for upload
-uploadForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    if (capturedImages.length === 0) {
-        alert("No images captured!");
-        return;
-    }
-
-    const formData = new FormData();
-    capturedImages.forEach((image, index) => {
-        formData.append(`image${index}`, dataURItoBlob(image), `image${index}.png`);
-    });
-
-    console.log("Images ready for upload!", formData);
-    alert("Images prepared for upload. Implement backend logic.");
-});
-
-// Convert Data URL to Blob for Form Submission
+// ✅ Convert Data URL to Blob for Upload
 function dataURItoBlob(dataURI) {
     const byteString = atob(dataURI.split(',')[1]);
     const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
@@ -110,5 +97,20 @@ function dataURItoBlob(dataURI) {
     return new Blob([uintArray], { type: mimeString });
 }
 
-// Capture button click event
+// ✅ Handle Form Submission
+uploadForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (capturedImages.length === 0) {
+        alert("No images captured!");
+        return;
+    }
+
+    const formData = new FormData();
+    capturedImages.forEach((image, index) => {
+        formData.append(`image${index}`, dataURItoBlob(image), `image${index}.png`);
+    });
+});
+
+// ✅ Capture button click
 shutterButton.addEventListener('click', captureImage);

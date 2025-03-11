@@ -16,6 +16,11 @@ p {
     padding: 0;
 }
 
+.title {
+    margin: 30px auto;
+    ;
+}
+
 body {
     font-family: Arial, sans-serif;
 }
@@ -43,9 +48,6 @@ img {
 
 /* /////custom css */
 
-canvas {
-    display: none;
-}
 
 button {
     border: 0;
@@ -53,57 +55,52 @@ button {
     background: #00000070;
     color: #FFFFFF;
     padding: 4px 8px;
-    height: 30px;
+    height: 50px;
     min-width: 30px;
-    border-radius: 24px;
+    border-radius: 10px;
     display: grid;
     place-items: center;
     cursor: pointer;
 }
 
 .camera-ctn {
-    position: relative;
     background: #000000;
 }
 
-.camera-view video {
-    height: 100vh;
-    width: 100vw;
+
+.videobox video {
     object-fit: cover;
     transform: scaleX(-1);
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.camera-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 /* CAMERA BOTTOM */
-.camera-bottom {
-    height: 250px;
-    background: #00000050;
-    position: absolute;
-    inset: 0;
-    top: auto;
-    padding: 0 5%;
-    display: grid;
-    place-items: center;
-}
 
-.camera-bottom>.inner {
-    display: grid;
-    place-items: center;
-    max-width: 500px;
-}
 
 /* SHUTTER CONTAINER */
 .shutter-ctn {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-around;
     width: 100%;
+    /* margin-top: 20px; */
 }
 
 .shutter {
-    height: 80px;
-    width: 80px;
+    height: 60px;
+    width: 60px;
     background: #FFFFFF;
     border-radius: 50%;
+    /* position: relative; */
+    /* Instead of absolute */
 }
 
 .shutter:active {
@@ -114,4 +111,55 @@ button {
     height: 55px;
     width: 55px;
     border-radius: 50%;
+}
+
+#location {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 60vw;
+    max-width: 80vw;
+    margin: 40px auto;
+    /* padding: 0 100px 0 100px; */
+}
+
+#get-location {
+    width: 75px;
+}
+
+
+video {
+    max-height: 70vh;
+    max-width: 70vw;
+    margin: 0;
+    /* background-color: black; */
+
+}
+
+#description {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+}
+
+#lDescription {
+    margin-right: 15px;
+}
+
+#severity {
+    width: 80%;
+    padding: 8px;
+    margin: 5px 0;
 }
