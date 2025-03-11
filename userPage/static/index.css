@@ -1,0 +1,117 @@
+body {
+    background-color: rgb(20, 41, 49);
+    color: white;
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1200px;
+    display: border-box;
+    margin: 0 auto;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* /////custom css */
+
+canvas {
+    display: none;
+}
+
+button {
+    border: 0;
+    outline: none;
+    background: #00000070;
+    color: #FFFFFF;
+    padding: 4px 8px;
+    height: 30px;
+    min-width: 30px;
+    border-radius: 24px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+
+.camera-ctn {
+    position: relative;
+    background: #000000;
+}
+
+.camera-view video {
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+/* CAMERA BOTTOM */
+.camera-bottom {
+    height: 250px;
+    background: #00000050;
+    position: absolute;
+    inset: 0;
+    top: auto;
+    padding: 0 5%;
+    display: grid;
+    place-items: center;
+}
+
+.camera-bottom>.inner {
+    display: grid;
+    place-items: center;
+    max-width: 500px;
+}
+
+/* SHUTTER CONTAINER */
+.shutter-ctn {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.shutter {
+    height: 80px;
+    width: 80px;
+    background: #FFFFFF;
+    border-radius: 50%;
+}
+
+.shutter:active {
+    transform: scale(0.8);
+}
+
+.switch-device {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+}

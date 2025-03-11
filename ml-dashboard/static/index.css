@@ -1,0 +1,42 @@
+body {
+    background-color: rgb(20, 41, 49);
+    color: white;
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1200px;
+    display: border-box;
+    margin: 0 auto;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}

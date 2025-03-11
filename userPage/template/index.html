@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/index.css">
+    <title>Potholes Analytics Dashboard</title>
+    <script defer src="../static/scripts.js"></script>
+    <script defer src="../static/camera.js"></script>
+</head>
+
+<body>
+    <div class="center">
+        <h1>Bengaluru's AI-Powered Road Guardian</h1>
+    </div>
+
+    <form id="upload-form" enctype="multipart/form-data">
+        <input type="file" id="file-input" multiple accept="image/*" hidden>
+        <button class="submit" type="submit" title="submit">Submit</button>
+    </form>
+
+    <div class="camera-container">
+        <button id="open-camera">Open Camera</button>
+        <button id="close-camera" disabled>Close Camera</button>
+    </div>
+
+    <video id="camera-stream" autoplay hidden></video>
+
+    <div class="shutter-ctn">
+        <button id="shutter" class="shutter">Capture</button>
+        <p id="image-count">Captured: 0 / 5</p>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="gallery-view">
+        <h3>Captured Images</h3>
+        <div id="captured-images"></div>
+    </div>
+
+</body>
+
+</html>
