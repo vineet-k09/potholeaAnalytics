@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: rgb(20, 41, 49);
+    color: white;
+}
+
+section {
+    max-width: 60vw;
+    margin: 80px auto;
+}
+
+#map {
+    width: 90%;
+    height: 500px;
+    margin: auto;
+    border: 2px solid black;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: white;
+    /* text-decoration: none; */
+}
+
+nav ul li a:hover {
+    color: rgb(184, 184, 184);
+}
+
+.dashboard {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.dashboard div {
+    padding: 15px;
+    border-radius: 8px;
+    width: 30%;
+    text-align: center;
+}
+
+.open {
+    background-color: #ffcd56;
+}
+
+.completed {
+    background-color: #4bc0c0;
+}
+
+.teams {
+    background-color: #36a2eb;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #666666;
+}
+
+#caseChart {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    max-width: 90vw;
+    margin: 0 auto;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+section {
+    padding: 20px;
+    border-radius: 20px;
+    border: black 2px solid;
+    box-shadow: #04426b 0px 0px 2px 2px;
+}

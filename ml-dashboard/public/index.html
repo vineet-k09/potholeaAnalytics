@@ -2,33 +2,1306 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta name="author" content="Vineet">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Visualization</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="scripts.js"></script>
 </head>
 
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="signup.html">Signup</a></li>
-            </ul>
-        </nav>
-    </header>
-    <footer>
-    </footer>
+    <div class="main">
+        <section>
+            <nav>
+                <ul>
+                    <!-- <li><a href="#LiveData">Live Data</a></li> -->
+                    <li><a href="#maps">Map Highlights</a></li>
+                    <li><a href="#dispatch">Dispatch</a></li>
+                    <li><a href="#PTable">Priority Data Table</a></li>
+                </ul>
+            </nav>
+        </section>
+        <section id="LiveData" style="display: none;">
+            <canvas id="locationChart"></canvas>
+        </section>
+
+        <section id="maps">
+            <h2>Map Highlighting Regions by Priority</h2>
+            <div id="map"></div>
+        </section>
+
+        <section id="dispatch">
+            <h2>Dispatch</h2>
+
+            <div class="dashboard">
+                <div class="open">Open Cases: <strong>15</strong></div>
+                <div class="completed">Completed Cases: <strong>8</strong></div>
+                <div class="teams">Dispatched Teams: <strong>2/20</strong></div>
+            </div>
+            <div class="center"><canvas id="caseChart" width="400" height="200"></canvas></div>
+
+
+            <h3>Dispatch Data</h3>
+            <table>
+                <tr>
+                    <th>Constituency</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>North Zone</td>
+                    <td>High</td>
+                    <td>Pending</td>
+                </tr>
+                <tr>
+                    <td>South Zone</td>
+                    <td>Medium</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>East Zone</td>
+                    <td>Low</td>
+                    <td>Pending</td>
+                </tr>
+                <tr>
+                    <td>West Zone</td>
+                    <td>High</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>Central Zone</td>
+                    <td>Medium</td>
+                    <td>Pending</td>
+                </tr>
+            </table>
+
+            <script>
+                const ctx = document.getElementById('caseChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Open Cases', 'Completed Cases', 'Dispatched Teams'],
+                        datasets: [{
+                            data: [15, 8, 2],
+                            backgroundColor: ['#ffcd56', '#4bc0c0', '#36a2eb'],
+                            maxwidth: 100
+                        }]
+                    }
+                });
+            </script>
+
+        </section>
+
+        <section id="#PTable">
+
+            <div class="container mt-4">
+                <h2 class="text-center">Service Priority Table</h2>
+                <table class="dataframe table table-striped">
+                    <thead>
+                        <tr style="text-align: right;">
+                            <th>Constituency</th>
+                            <th>Priority Rank</th>
+                            <th>Area Name</th>
+                            <th>Area Name Priority Rank</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>YELAHANKA</td>
+                            <td>1.0</td>
+                            <td>Chowdeshwari Ward</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>YELAHANKA</td>
+                            <td>1.0</td>
+                            <td>Kempegowda Ward</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>YELAHANKA</td>
+                            <td>1.0</td>
+                            <td>Yelahanka Satellite Town</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>YELAHANKA</td>
+                            <td>1.0</td>
+                            <td>Atturu</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>B.T.M. LAYOUT</td>
+                            <td>2.0</td>
+                            <td>Ejipura</td>
+                            <td>3.0</td>
+                        </tr>
+                        <tr>
+                            <td>B.T.M. LAYOUT</td>
+                            <td>2.0</td>
+                            <td>Jakkasandra</td>
+                            <td>3.0</td>
+                        </tr>
+                        <tr>
+                            <td>B.T.M. LAYOUT</td>
+                            <td>2.0</td>
+                            <td>Lakkasandra</td>
+                            <td>3.0</td>
+                        </tr>
+                        <tr>
+                            <td>B.T.M. LAYOUT</td>
+                            <td>2.0</td>
+                            <td>Madivala</td>
+                            <td>3.0</td>
+                        </tr>
+                        <tr>
+                            <td>B.T.M. LAYOUT</td>
+                            <td>2.0</td>
+                            <td>Suddagunte Palya</td>
+                            <td>3.0</td>
+                        </tr>
+                        <tr>
+                            <td>B.T.M. LAYOUT</td>
+                            <td>2.0</td>
+                            <td>B T M Layout</td>
+                            <td>6.0</td>
+                        </tr>
+                        <tr>
+                            <td>B.T.M. LAYOUT</td>
+                            <td>2.0</td>
+                            <td>Adugodi</td>
+                            <td>7.5</td>
+                        </tr>
+                        <tr>
+                            <td>B.T.M. LAYOUT</td>
+                            <td>2.0</td>
+                            <td>Koramangala</td>
+                            <td>7.5</td>
+                        </tr>
+                        <tr>
+                            <td>BANGALORE SOUTH</td>
+                            <td>4.5</td>
+                            <td>Begur</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>BANGALORE SOUTH</td>
+                            <td>4.5</td>
+                            <td>Gottigere</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>BANGALORE SOUTH</td>
+                            <td>4.5</td>
+                            <td>Uttarahalli</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>CHAMARAJPET</td>
+                            <td>4.5</td>
+                            <td>Jagajivanram Nagar</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>CHAMARAJPET</td>
+                            <td>4.5</td>
+                            <td>K R Market</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>CHAMARAJPET</td>
+                            <td>4.5</td>
+                            <td>Padarayanapura</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>CHAMARAJPET</td>
+                            <td>4.5</td>
+                            <td>Rayapura</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>MAHALAXMI LAYOUT</td>
+                            <td>4.5</td>
+                            <td>Mahalakshmipura</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>MAHALAXMI LAYOUT</td>
+                            <td>4.5</td>
+                            <td>Nagapura</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>MAHALAXMI LAYOUT</td>
+                            <td>4.5</td>
+                            <td>Shakthi Ganapathi Nagar</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>MAHALAXMI LAYOUT</td>
+                            <td>4.5</td>
+                            <td>Vrisabhavathi Nagar</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>SHANTI NAGAR</td>
+                            <td>4.5</td>
+                            <td>Agara</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>SHANTI NAGAR</td>
+                            <td>4.5</td>
+                            <td>Domlur</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>SHANTI NAGAR</td>
+                            <td>4.5</td>
+                            <td>Nilasandra</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>SHANTI NAGAR</td>
+                            <td>4.5</td>
+                            <td>Shantala Nagar</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>BANGALORE SOUTH</td>
+                            <td>4.5</td>
+                            <td>Konanakunte</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>BANGALORE SOUTH</td>
+                            <td>4.5</td>
+                            <td>Vasanthpura</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>BANGALORE SOUTH</td>
+                            <td>4.5</td>
+                            <td>Yelchenahalli</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>CHAMARAJPET</td>
+                            <td>4.5</td>
+                            <td>Chamrajapet</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>MAHALAXMI LAYOUT</td>
+                            <td>4.5</td>
+                            <td>Nandini Layout</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>SHANTI NAGAR</td>
+                            <td>4.5</td>
+                            <td>Vannarpete</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>CHAMARAJPET</td>
+                            <td>4.5</td>
+                            <td>Azad Nagar</td>
+                            <td>6.5</td>
+                        </tr>
+                        <tr>
+                            <td>CHAMARAJPET</td>
+                            <td>4.5</td>
+                            <td>Chalavadipalya</td>
+                            <td>6.5</td>
+                        </tr>
+                        <tr>
+                            <td>MAHALAXMI LAYOUT</td>
+                            <td>4.5</td>
+                            <td>Marappana Palya</td>
+                            <td>6.5</td>
+                        </tr>
+                        <tr>
+                            <td>MAHALAXMI LAYOUT</td>
+                            <td>4.5</td>
+                            <td>Shankar Mutt</td>
+                            <td>6.5</td>
+                        </tr>
+                        <tr>
+                            <td>SHANTI NAGAR</td>
+                            <td>4.5</td>
+                            <td>Jogapalya</td>
+                            <td>6.5</td>
+                        </tr>
+                        <tr>
+                            <td>SHANTI NAGAR</td>
+                            <td>4.5</td>
+                            <td>Shanthi Nagar</td>
+                            <td>6.5</td>
+                        </tr>
+                        <tr>
+                            <td>BANGALORE SOUTH</td>
+                            <td>4.5</td>
+                            <td>Anjanapura</td>
+                            <td>7.0</td>
+                        </tr>
+                        <tr>
+                            <td>PADMANABA NAGAR</td>
+                            <td>7.0</td>
+                            <td>Banashankari Temple Ward</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>PADMANABA NAGAR</td>
+                            <td>7.0</td>
+                            <td>Chikkalsandra</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>PADMANABA NAGAR</td>
+                            <td>7.0</td>
+                            <td>Hosakerehalli</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>PADMANABA NAGAR</td>
+                            <td>7.0</td>
+                            <td>Yediyur</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>PADMANABA NAGAR</td>
+                            <td>7.0</td>
+                            <td>Kumaraswamy Layout</td>
+                            <td>5.5</td>
+                        </tr>
+                        <tr>
+                            <td>PADMANABA NAGAR</td>
+                            <td>7.0</td>
+                            <td>Padmanabha Nagar</td>
+                            <td>5.5</td>
+                        </tr>
+                        <tr>
+                            <td>PADMANABA NAGAR</td>
+                            <td>7.0</td>
+                            <td>Ganesh Mandiara Ward</td>
+                            <td>7.5</td>
+                        </tr>
+                        <tr>
+                            <td>PADMANABA NAGAR</td>
+                            <td>7.0</td>
+                            <td>Karisandra</td>
+                            <td>7.5</td>
+                        </tr>
+                        <tr>
+                            <td>K.R.PURA</td>
+                            <td>8.0</td>
+                            <td>Basavanapura</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>K.R.PURA</td>
+                            <td>8.0</td>
+                            <td>HAL Airport</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>K.R.PURA</td>
+                            <td>8.0</td>
+                            <td>Vijnana Nagar</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>K.R.PURA</td>
+                            <td>8.0</td>
+                            <td>Vijnanapura</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>K.R.PURA</td>
+                            <td>8.0</td>
+                            <td>A Narayanapura</td>
+                            <td>6.0</td>
+                        </tr>
+                        <tr>
+                            <td>K.R.PURA</td>
+                            <td>8.0</td>
+                            <td>K R Pura</td>
+                            <td>6.0</td>
+                        </tr>
+                        <tr>
+                            <td>K.R.PURA</td>
+                            <td>8.0</td>
+                            <td>Ramamurthy Nagar</td>
+                            <td>6.0</td>
+                        </tr>
+                        <tr>
+                            <td>K.R.PURA</td>
+                            <td>8.0</td>
+                            <td>Devasandra</td>
+                            <td>8.5</td>
+                        </tr>
+                        <tr>
+                            <td>K.R.PURA</td>
+                            <td>8.0</td>
+                            <td>Horamavu</td>
+                            <td>8.5</td>
+                        </tr>
+                        <tr>
+                            <td>CHICKPET</td>
+                            <td>9.5</td>
+                            <td>Dharmaraya Swamy Temple</td>
+                            <td>1.0</td>
+                        </tr>
+                        <tr>
+                            <td>C.V. RAMAN NAGAR (SC)</td>
+                            <td>9.5</td>
+                            <td>CV Raman Nagar</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>C.V. RAMAN NAGAR (SC)</td>
+                            <td>9.5</td>
+                            <td>Jeevanbhima Nagar</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>C.V. RAMAN NAGAR (SC)</td>
+                            <td>9.5</td>
+                            <td>Benniganahalli</td>
+                            <td>4.5</td>
+                        </tr>
+                        <tr>
+                            <td>C.V. RAMAN NAGAR (SC)</td>
+                            <td>9.5</td>
+                            <td>Hoysala Nagar</td>
+                            <td>4.5</td>
+                        </tr>
+                        <tr>
+                            <td>C.V. RAMAN NAGAR (SC)</td>
+                            <td>9.5</td>
+                            <td>New Tippasandra</td>
+                            <td>4.5</td>
+                        </tr>
+                        <tr>
+                            <td>C.V. RAMAN NAGAR (SC)</td>
+                            <td>9.5</td>
+                            <td>Sarvagna Nagar</td>
+                            <td>4.5</td>
+                        </tr>
+                        <tr>
+                            <td>CHICKPET</td>
+                            <td>9.5</td>
+                            <td>Hombegowda Nagar</td>
+                            <td>4.5</td>
+                        </tr>
+                        <tr>
+                            <td>CHICKPET</td>
+                            <td>9.5</td>
+                            <td>Jayanagara</td>
+                            <td>4.5</td>
+                        </tr>
+                        <tr>
+                            <td>CHICKPET</td>
+                            <td>9.5</td>
+                            <td>Siddapura</td>
+                            <td>4.5</td>
+                        </tr>
+                        <tr>
+                            <td>CHICKPET</td>
+                            <td>9.5</td>
+                            <td>Sudham Nagar</td>
+                            <td>4.5</td>
+                        </tr>
+                        <tr>
+                            <td>CHICKPET</td>
+                            <td>9.5</td>
+                            <td>Sunkenahalli</td>
+                            <td>4.5</td>
+                        </tr>
+                        <tr>
+                            <td>CHICKPET</td>
+                            <td>9.5</td>
+                            <td>Vishveshwara Puram</td>
+                            <td>4.5</td>
+                        </tr>
+                        <tr>
+                            <td>C.V. RAMAN NAGAR (SC)</td>
+                            <td>9.5</td>
+                            <td>Konena Agrahara</td>
+                            <td>7.0</td>
+                        </tr>
+                        <tr>
+                            <td>SARVARGNA NAGAR</td>
+                            <td>12.5</td>
+                            <td>Banasavadi</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>SARVARGNA NAGAR</td>
+                            <td>12.5</td>
+                            <td>Kacharkanahalli</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>BOMMANAHALLI</td>
+                            <td>12.5</td>
+                            <td>Hongasandra</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>BOMMANAHALLI</td>
+                            <td>12.5</td>
+                            <td>Jaraganahalli</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>BOMMANAHALLI</td>
+                            <td>12.5</td>
+                            <td>Mangammanapalya</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>HEBBAL</td>
+                            <td>12.5</td>
+                            <td>Ganga Nagar</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>HEBBAL</td>
+                            <td>12.5</td>
+                            <td>Jayachamrajendra Nagar</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>HEBBAL</td>
+                            <td>12.5</td>
+                            <td>Radhakrishna Temple</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>VIJAYA NAGAR</td>
+                            <td>12.5</td>
+                            <td>Attiguppe</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>VIJAYA NAGAR</td>
+                            <td>12.5</td>
+                            <td>Deepanjali Nagara</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>VIJAYA NAGAR</td>
+                            <td>12.5</td>
+                            <td>Kempapura Agrahara</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>BOMMANAHALLI</td>
+                            <td>12.5</td>
+                            <td>Arakere</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>BOMMANAHALLI</td>
+                            <td>12.5</td>
+                            <td>Bilekhali</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>BOMMANAHALLI</td>
+                            <td>12.5</td>
+                            <td>Bommanahalli</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>HEBBAL</td>
+                            <td>12.5</td>
+                            <td>Gangenahalli</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>HEBBAL</td>
+                            <td>12.5</td>
+                            <td>Manorayanapalya</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>HEBBAL</td>
+                            <td>12.5</td>
+                            <td>Vishwanatha Nagenahalli</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>SARVARGNA NAGAR</td>
+                            <td>12.5</td>
+                            <td>HBR Layout</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>SARVARGNA NAGAR</td>
+                            <td>12.5</td>
+                            <td>Kadugondanahalli</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>SARVARGNA NAGAR</td>
+                            <td>12.5</td>
+                            <td>Lingarajapura</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>SARVARGNA NAGAR</td>
+                            <td>12.5</td>
+                            <td>Maruthi Seva Nagar</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>SARVARGNA NAGAR</td>
+                            <td>12.5</td>
+                            <td>Nagavara</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>VIJAYA NAGAR</td>
+                            <td>12.5</td>
+                            <td>Bapuji Nagar</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>VIJAYA NAGAR</td>
+                            <td>12.5</td>
+                            <td>Gali Anjaneya Temple</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>VIJAYA NAGAR</td>
+                            <td>12.5</td>
+                            <td>Hosahalli</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>BOMMANAHALLI</td>
+                            <td>12.5</td>
+                            <td>HSR Layout</td>
+                            <td>7.5</td>
+                        </tr>
+                        <tr>
+                            <td>BOMMANAHALLI</td>
+                            <td>12.5</td>
+                            <td>Puttenahalli</td>
+                            <td>7.5</td>
+                        </tr>
+                        <tr>
+                            <td>HEBBAL</td>
+                            <td>12.5</td>
+                            <td>Hebbal</td>
+                            <td>7.5</td>
+                        </tr>
+                        <tr>
+                            <td>HEBBAL</td>
+                            <td>12.5</td>
+                            <td>Sanjay Nagar</td>
+                            <td>7.5</td>
+                        </tr>
+                        <tr>
+                            <td>VIJAYA NAGAR</td>
+                            <td>12.5</td>
+                            <td>Hampinagara</td>
+                            <td>7.5</td>
+                        </tr>
+                        <tr>
+                            <td>VIJAYA NAGAR</td>
+                            <td>12.5</td>
+                            <td>Vijayanagara</td>
+                            <td>7.5</td>
+                        </tr>
+                        <tr>
+                            <td>SARVARGNA NAGAR</td>
+                            <td>12.5</td>
+                            <td>Kammanahalli</td>
+                            <td>8.0</td>
+                        </tr>
+                        <tr>
+                            <td>YESHVANTHAPURA</td>
+                            <td>17.5</td>
+                            <td>Ullalu</td>
+                            <td>1.0</td>
+                        </tr>
+                        <tr>
+                            <td>BASAVANAGUDI</td>
+                            <td>17.5</td>
+                            <td>Hanumanth Nagar</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>BASAVANAGUDI</td>
+                            <td>17.5</td>
+                            <td>Vidyapeeta Ward</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>JAYANAGAR</td>
+                            <td>17.5</td>
+                            <td>J P Nagar</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>JAYANAGAR</td>
+                            <td>17.5</td>
+                            <td>Jayanagar East</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>MALLESWARAM</td>
+                            <td>17.5</td>
+                            <td>Aramane Nagar</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>MALLESWARAM</td>
+                            <td>17.5</td>
+                            <td>Mattikere</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>SHIVAJI NAGAR</td>
+                            <td>17.5</td>
+                            <td>Bharathi Nagar</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>SHIVAJI NAGAR</td>
+                            <td>17.5</td>
+                            <td>Jayamahal</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>BYATARAYANAPURA</td>
+                            <td>17.5</td>
+                            <td>Byatarayanapura</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>BYATARAYANAPURA</td>
+                            <td>17.5</td>
+                            <td>Kodigehalli</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>BYATARAYANAPURA</td>
+                            <td>17.5</td>
+                            <td>Thanisandra</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>YESHVANTHAPURA</td>
+                            <td>17.5</td>
+                            <td>Dodda Bidarakallu</td>
+                            <td>3.0</td>
+                        </tr>
+                        <tr>
+                            <td>YESHVANTHAPURA</td>
+                            <td>17.5</td>
+                            <td>Herohalli</td>
+                            <td>3.0</td>
+                        </tr>
+                        <tr>
+                            <td>YESHVANTHAPURA</td>
+                            <td>17.5</td>
+                            <td>Kengeri</td>
+                            <td>3.0</td>
+                        </tr>
+                        <tr>
+                            <td>BASAVANAGUDI</td>
+                            <td>17.5</td>
+                            <td>Basavanagudi</td>
+                            <td>3.5</td>
+                        </tr>
+                        <tr>
+                            <td>BASAVANAGUDI</td>
+                            <td>17.5</td>
+                            <td>Girinagara</td>
+                            <td>3.5</td>
+                        </tr>
+                        <tr>
+                            <td>BYATARAYANAPURA</td>
+                            <td>17.5</td>
+                            <td>Dodda Bommasandra</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>JAYANAGAR</td>
+                            <td>17.5</td>
+                            <td>Byrasandra</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>JAYANAGAR</td>
+                            <td>17.5</td>
+                            <td>Gurappanapalya</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>JAYANAGAR</td>
+                            <td>17.5</td>
+                            <td>Shakambari Nagar</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>MALLESWARAM</td>
+                            <td>17.5</td>
+                            <td>Gayithri Nagar</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>MALLESWARAM</td>
+                            <td>17.5</td>
+                            <td>Malleswaram</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>MALLESWARAM</td>
+                            <td>17.5</td>
+                            <td>Rajamahal Guttahalli</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>SHIVAJI NAGAR</td>
+                            <td>17.5</td>
+                            <td>Halsoor</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>SHIVAJI NAGAR</td>
+                            <td>17.5</td>
+                            <td>Sampangiram Nagar</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>SHIVAJI NAGAR</td>
+                            <td>17.5</td>
+                            <td>Shivaji Nagar</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>YESHVANTHAPURA</td>
+                            <td>17.5</td>
+                            <td>Hemmigepura</td>
+                            <td>5.0</td>
+                        </tr>
+                        <tr>
+                            <td>BASAVANAGUDI</td>
+                            <td>17.5</td>
+                            <td>Katriguppe</td>
+                            <td>5.5</td>
+                        </tr>
+                        <tr>
+                            <td>BASAVANAGUDI</td>
+                            <td>17.5</td>
+                            <td>Srinagara</td>
+                            <td>5.5</td>
+                        </tr>
+                        <tr>
+                            <td>BYATARAYANAPURA</td>
+                            <td>17.5</td>
+                            <td>Jakkuru</td>
+                            <td>6.0</td>
+                        </tr>
+                        <tr>
+                            <td>BYATARAYANAPURA</td>
+                            <td>17.5</td>
+                            <td>Kuvempu Nagar</td>
+                            <td>6.0</td>
+                        </tr>
+                        <tr>
+                            <td>BYATARAYANAPURA</td>
+                            <td>17.5</td>
+                            <td>Vidyaranyapura</td>
+                            <td>6.0</td>
+                        </tr>
+                        <tr>
+                            <td>JAYANAGAR</td>
+                            <td>17.5</td>
+                            <td>Pattabhiram Nagar</td>
+                            <td>6.5</td>
+                        </tr>
+                        <tr>
+                            <td>JAYANAGAR</td>
+                            <td>17.5</td>
+                            <td>Sarakki</td>
+                            <td>6.5</td>
+                        </tr>
+                        <tr>
+                            <td>MALLESWARAM</td>
+                            <td>17.5</td>
+                            <td>Kadu Malleshwara Ward</td>
+                            <td>6.5</td>
+                        </tr>
+                        <tr>
+                            <td>MALLESWARAM</td>
+                            <td>17.5</td>
+                            <td>Subramanya Nagar</td>
+                            <td>6.5</td>
+                        </tr>
+                        <tr>
+                            <td>SHIVAJI NAGAR</td>
+                            <td>17.5</td>
+                            <td>Ramaswamy Palya</td>
+                            <td>6.5</td>
+                        </tr>
+                        <tr>
+                            <td>SHIVAJI NAGAR</td>
+                            <td>17.5</td>
+                            <td>Vasanth Nagar</td>
+                            <td>6.5</td>
+                        </tr>
+                        <tr>
+                            <td>GOVINDRAJA NAGAR</td>
+                            <td>21.0</td>
+                            <td>Agrahara Dasarahalli</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>GOVINDRAJA NAGAR</td>
+                            <td>21.0</td>
+                            <td>Kaveripura</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>GOVINDRAJA NAGAR</td>
+                            <td>21.0</td>
+                            <td>Maruthi Mandira Ward</td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td>GOVINDRAJA NAGAR</td>
+                            <td>21.0</td>
+                            <td>Govindarajanagara</td>
+                            <td>4.5</td>
+                        </tr>
+                        <tr>
+                            <td>GOVINDRAJA NAGAR</td>
+                            <td>21.0</td>
+                            <td>Nayandahalli</td>
+                            <td>4.5</td>
+                        </tr>
+                        <tr>
+                            <td>GOVINDRAJA NAGAR</td>
+                            <td>21.0</td>
+                            <td>Dr Raj Kumar Ward</td>
+                            <td>7.5</td>
+                        </tr>
+                        <tr>
+                            <td>GOVINDRAJA NAGAR</td>
+                            <td>21.0</td>
+                            <td>Marenahalli</td>
+                            <td>7.5</td>
+                        </tr>
+                        <tr>
+                            <td>GOVINDRAJA NAGAR</td>
+                            <td>21.0</td>
+                            <td>Mudalapalya</td>
+                            <td>7.5</td>
+                        </tr>
+                        <tr>
+                            <td>GOVINDRAJA NAGAR</td>
+                            <td>21.0</td>
+                            <td>Nagarabhavi</td>
+                            <td>7.5</td>
+                        </tr>
+                        <tr>
+                            <td>DASARAHALLI</td>
+                            <td>22.0</td>
+                            <td>Hegganahalli</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>DASARAHALLI</td>
+                            <td>22.0</td>
+                            <td>Rajagopal Nagara</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>DASARAHALLI</td>
+                            <td>22.0</td>
+                            <td>Chokkasandra</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>DASARAHALLI</td>
+                            <td>22.0</td>
+                            <td>Mallasandra</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>DASARAHALLI</td>
+                            <td>22.0</td>
+                            <td>Shettihalli</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>DASARAHALLI</td>
+                            <td>22.0</td>
+                            <td>Bagalakunte</td>
+                            <td>7.0</td>
+                        </tr>
+                        <tr>
+                            <td>DASARAHALLI</td>
+                            <td>22.0</td>
+                            <td>Peenya Industrial Area</td>
+                            <td>7.0</td>
+                        </tr>
+                        <tr>
+                            <td>DASARAHALLI</td>
+                            <td>22.0</td>
+                            <td>T Dasarahalli</td>
+                            <td>7.0</td>
+                        </tr>
+                        <tr>
+                            <td>PULAKESHI NAGAR (SC)</td>
+                            <td>23.5</td>
+                            <td>Pulikeshi Nagar</td>
+                            <td>1.0</td>
+                        </tr>
+                        <tr>
+                            <td>GANDHI NAGAR</td>
+                            <td>23.5</td>
+                            <td>Gandhinagar</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>GANDHI NAGAR</td>
+                            <td>23.5</td>
+                            <td>Okalipura</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>GANDHI NAGAR</td>
+                            <td>23.5</td>
+                            <td>Binnipete</td>
+                            <td>3.5</td>
+                        </tr>
+                        <tr>
+                            <td>GANDHI NAGAR</td>
+                            <td>23.5</td>
+                            <td>Cottonpete</td>
+                            <td>3.5</td>
+                        </tr>
+                        <tr>
+                            <td>PULAKESHI NAGAR (SC)</td>
+                            <td>23.5</td>
+                            <td>Devara Jeevanahalli</td>
+                            <td>3.5</td>
+                        </tr>
+                        <tr>
+                            <td>PULAKESHI NAGAR (SC)</td>
+                            <td>23.5</td>
+                            <td>Kaval Bairasandra</td>
+                            <td>3.5</td>
+                        </tr>
+                        <tr>
+                            <td>PULAKESHI NAGAR (SC)</td>
+                            <td>23.5</td>
+                            <td>Kushal Nagar</td>
+                            <td>3.5</td>
+                        </tr>
+                        <tr>
+                            <td>PULAKESHI NAGAR (SC)</td>
+                            <td>23.5</td>
+                            <td>Muneshwara Nagar</td>
+                            <td>3.5</td>
+                        </tr>
+                        <tr>
+                            <td>GANDHI NAGAR</td>
+                            <td>23.5</td>
+                            <td>Chickpete</td>
+                            <td>6.0</td>
+                        </tr>
+                        <tr>
+                            <td>GANDHI NAGAR</td>
+                            <td>23.5</td>
+                            <td>Dattatreya Temple</td>
+                            <td>6.0</td>
+                        </tr>
+                        <tr>
+                            <td>GANDHI NAGAR</td>
+                            <td>23.5</td>
+                            <td>Subhash Nagar</td>
+                            <td>6.0</td>
+                        </tr>
+                        <tr>
+                            <td>PULAKESHI NAGAR (SC)</td>
+                            <td>23.5</td>
+                            <td>S K Garden</td>
+                            <td>6.5</td>
+                        </tr>
+                        <tr>
+                            <td>PULAKESHI NAGAR (SC)</td>
+                            <td>23.5</td>
+                            <td>Sagayarapura</td>
+                            <td>6.5</td>
+                        </tr>
+                        <tr>
+                            <td>RAJAJI NAGAR</td>
+                            <td>25.0</td>
+                            <td>Rajajinagar</td>
+                            <td>1.0</td>
+                        </tr>
+                        <tr>
+                            <td>RAJAJI NAGAR</td>
+                            <td>25.0</td>
+                            <td>Basaveshwara Nagar</td>
+                            <td>3.0</td>
+                        </tr>
+                        <tr>
+                            <td>RAJAJI NAGAR</td>
+                            <td>25.0</td>
+                            <td>Shivanagara</td>
+                            <td>3.0</td>
+                        </tr>
+                        <tr>
+                            <td>RAJAJI NAGAR</td>
+                            <td>25.0</td>
+                            <td>Srirammandir</td>
+                            <td>3.0</td>
+                        </tr>
+                        <tr>
+                            <td>RAJAJI NAGAR</td>
+                            <td>25.0</td>
+                            <td>Dayananda Nagar</td>
+                            <td>6.0</td>
+                        </tr>
+                        <tr>
+                            <td>RAJAJI NAGAR</td>
+                            <td>25.0</td>
+                            <td>Kamakshipalya</td>
+                            <td>6.0</td>
+                        </tr>
+                        <tr>
+                            <td>RAJAJI NAGAR</td>
+                            <td>25.0</td>
+                            <td>Prakash Nagar</td>
+                            <td>6.0</td>
+                        </tr>
+                        <tr>
+                            <td>RAJARAJESHWARI NAGAR</td>
+                            <td>26.0</td>
+                            <td>Yeshwanthpura</td>
+                            <td>1.0</td>
+                        </tr>
+                        <tr>
+                            <td>RAJARAJESHWARI NAGAR</td>
+                            <td>26.0</td>
+                            <td>JP Park</td>
+                            <td>3.0</td>
+                        </tr>
+                        <tr>
+                            <td>RAJARAJESHWARI NAGAR</td>
+                            <td>26.0</td>
+                            <td>Jalahalli</td>
+                            <td>3.0</td>
+                        </tr>
+                        <tr>
+                            <td>RAJARAJESHWARI NAGAR</td>
+                            <td>26.0</td>
+                            <td>Lakshmi Devi Nagar</td>
+                            <td>3.0</td>
+                        </tr>
+                        <tr>
+                            <td>RAJARAJESHWARI NAGAR</td>
+                            <td>26.0</td>
+                            <td>HMT Ward</td>
+                            <td>7.0</td>
+                        </tr>
+                        <tr>
+                            <td>RAJARAJESHWARI NAGAR</td>
+                            <td>26.0</td>
+                            <td>Jnana Bharathi Ward</td>
+                            <td>7.0</td>
+                        </tr>
+                        <tr>
+                            <td>RAJARAJESHWARI NAGAR</td>
+                            <td>26.0</td>
+                            <td>Kottegepalya</td>
+                            <td>7.0</td>
+                        </tr>
+                        <tr>
+                            <td>RAJARAJESHWARI NAGAR</td>
+                            <td>26.0</td>
+                            <td>Laggere</td>
+                            <td>7.0</td>
+                        </tr>
+                        <tr>
+                            <td>RAJARAJESHWARI NAGAR</td>
+                            <td>26.0</td>
+                            <td>Rajarajeshwari Nagar</td>
+                            <td>7.0</td>
+                        </tr>
+                        <tr>
+                            <td>MAHADEVAPURA (SC)</td>
+                            <td>27.0</td>
+                            <td>Dodda Nekkundi</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>MAHADEVAPURA (SC)</td>
+                            <td>27.0</td>
+                            <td>Hudi</td>
+                            <td>1.5</td>
+                        </tr>
+                        <tr>
+                            <td>MAHADEVAPURA (SC)</td>
+                            <td>27.0</td>
+                            <td>Bellanduru</td>
+                            <td>5.5</td>
+                        </tr>
+                        <tr>
+                            <td>MAHADEVAPURA (SC)</td>
+                            <td>27.0</td>
+                            <td>Garudachar Palya</td>
+                            <td>5.5</td>
+                        </tr>
+                        <tr>
+                            <td>MAHADEVAPURA (SC)</td>
+                            <td>27.0</td>
+                            <td>Hagadur</td>
+                            <td>5.5</td>
+                        </tr>
+                        <tr>
+                            <td>MAHADEVAPURA (SC)</td>
+                            <td>27.0</td>
+                            <td>Kadugodi</td>
+                            <td>5.5</td>
+                        </tr>
+                        <tr>
+                            <td>MAHADEVAPURA (SC)</td>
+                            <td>27.0</td>
+                            <td>Marattahalli</td>
+                            <td>5.5</td>
+                        </tr>
+                        <tr>
+                            <td>MAHADEVAPURA (SC)</td>
+                            <td>27.0</td>
+                            <td>Varthuru</td>
+                            <td>5.5</td>
+                        </tr>
+                        <tr>
+                            <td>ANEKAL (SC)</td>
+                            <td>28.0</td>
+                            <td>Singasandra</td>
+                            <td>1.0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </body>
 
 </html>
-<!-- 
-login karega
-monitor predictive analysis 
-monitor crowd report
-monitor traffic cameras - drones
-preditive manintainca
-repair dispatch - this will be ai driven and monitor
--->

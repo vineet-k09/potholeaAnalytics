@@ -78,7 +78,8 @@ app.post("/upload", upload.any(), (req, res) => {
     if (!fs.existsSync(csvPath)) {
         fs.writeFileSync(csvPath, "Location,Description,Severity,Images\n");
     }
-    const csvLine = `\n${location},${descriptionValue},${severityValue},${images.join(";")}\n`;
+    const csvLine = `\n,${location},${descriptionValue},${severityValue},
+    \n`;
 
     fs.appendFile(csvPath, csvLine, (err) => {
         if (err) {
@@ -86,6 +87,11 @@ app.post("/upload", upload.any(), (req, res) => {
         }
         res.json({ message: "Images and user data saved successfully!", images });
     });
+
+    //update website
+    xios.get('http://localhost:3000/refresh')
+        .then(() => console.log('Server 3000 Notified'))
+        .catch(err => console.error('Error notifying server 3000:', err));
 });
 
 

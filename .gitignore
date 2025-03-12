@@ -1,2 +1,6 @@
 userPage/uploads
 node_modules
+venv
+backendProcess.py
+index.html
+result.html 

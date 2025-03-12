@@ -21,3 +21,8 @@ Copy
 Edit
 https://random.ngrok.io
 Open this link on your phone’s browser and your server will be accessible!
+
+python backendProcess.py
+
+py -3.10 -m venv venv
+venv\Scripts\activate
