@@ -7,7 +7,11 @@ const app = express();
 const PORT = 5000;
 
 console.log("server loaded");
-
+// Serve homepage (index.html)
+app.use(express.static(path.join(__dirname, 'public')));
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 // Middleware to parse JSON & serve static files
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -28,10 +32,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// Serve homepage (index.html)
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
-});
+
 
 // Handle image upload
 app.post("/upload", upload.any(), (req, res) => {
