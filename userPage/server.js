@@ -78,7 +78,7 @@ app.post("/upload", upload.any(), (req, res) => {
     if (!fs.existsSync(csvPath)) {
         fs.writeFileSync(csvPath, "Location,Description,Severity,Images\n");
     }
-    const csvLine = `${location},${descriptionValue},${severityValue},${images.join(";")}\n`;
+    const csvLine = `\n${location},${descriptionValue},${severityValue},${images.join(";")}\n`;
 
     fs.appendFile(csvPath, csvLine, (err) => {
         if (err) {

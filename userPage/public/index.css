@@ -136,7 +136,8 @@ form {
 }
 
 #get-location {
-    width: 75px;
+    /* width: 75px; */
+    min-width: 100px;
 }
 
 

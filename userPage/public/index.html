@@ -18,8 +18,7 @@
     <form id="upload-form" enctype="multipart/form-data" action="/upload" method="post">
 
         <div class="center">
-            <button id="get-location" style="height: 40px; margin-right: 20px;width: 200px;"
-                type="button">Detect</button>
+            <button id="get-location" style="height: 40px; margin-right: 20px;" type="button">Detect</button>
             <input type="text" id="location" placeholder="Location" readonly style="display: hidden;width: 50vw;">
         </div>
 
@@ -37,6 +36,7 @@
         <div class="shutter-ctn center">
             <button id="shutter" class="shutter" style="display: none;" type="button">Capture</button>
         </div>
+        <button id="switch-camera" style="display:none;" type="button">Switch Camera</button>
         <div class="center">
             <p id="image-count" style="display: none;">Max Images: 0 / 5</p>
         </div>

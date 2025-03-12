@@ -7,6 +7,8 @@ const capturedImagesContainer = document.getElementById('captured-images');
 const fileInput = document.getElementById('file-input');
 // const uploadForm = document.getElementById('upload-form');
 const gallery = document.getElementById('gallery-view');
+const switchCameraButton = document.getElementById('switch-camera'); // ✅ NEW BUTTON
+
 
 let stream = null;
 let width = window.innerWidth;
@@ -14,21 +16,34 @@ let height = 0;
 let streaming = false;
 let capturedImages = [];
 const maxImages = 5;
+let currentFacingMode = "user"; //default front camera
 
 // ✅ Open Camera
-openCameraButton.addEventListener('click', async () => {
+async function openCamera(facingMode = "user") {
     try {
-        stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode } });
         cameraVideoStream.srcObject = stream;
         cameraVideoStream.style.display = "block"; // Show camera
         openCameraButton.style.display = "none"; // Hide Open button
         closeCameraButton.style.display = "inline-block"; // Show Close button
         shutterButton.style.display = "inline-block"; // Show Capture button
+        switchCameraButton.style.display = "inline-block"; // ✅ Show Switch button
         imageCountDisplay.style.display = "block"; // Show Image count
         gallery.style.display = "block"; // Show Gallery
     } catch (error) {
         console.error('Error accessing the camera:', error);
     }
+}
+
+openCameraButton.addEventListener('click', () => openCamera(currentFacingMode));
+
+// ✅ Switch Camera
+switchCameraButton.addEventListener('click', () => {
+    currentFacingMode = currentFacingMode === "user" ? "environment" : "user"; // Toggle front/back camera
+    if (stream) {
+        stream.getTracks().forEach(track => track.stop()); // Stop current stream
+    }
+    openCamera(currentFacingMode); // Restart camera with new facing mode
 });
 
 // ✅ Close Camera
@@ -41,6 +56,7 @@ closeCameraButton.addEventListener('click', () => {
     openCameraButton.style.display = "inline-block"; // Show Open button
     closeCameraButton.style.display = "none"; // Hide Close button
     shutterButton.style.display = "none"; // Hide Capture button
+    switchCameraButton.style.display = "none"; // ✅ Hide Switch button
 });
 
 // ✅ Adjust video size
