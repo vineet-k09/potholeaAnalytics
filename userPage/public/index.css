@@ -3,12 +3,6 @@ body {
     color: white;
 }
 
-*,
-::before,
-::after {
-    box-sizing: border-box;
-}
-
 body,
 h1,
 p {
@@ -52,7 +46,7 @@ img {
 button {
     border: 0;
     outline: none;
-    background: #00000070;
+    background: #8400ff70;
     color: #FFFFFF;
     padding: 4px 8px;
     height: 50px;
@@ -133,6 +127,10 @@ form {
     max-width: 80vw;
     margin: 40px auto;
     /* padding: 0 100px 0 100px; */
+    border: black 2px solid;
+    padding: 50px;
+    border-radius: 20px;
+    background-color: #00000070;
 }
 
 #get-location {

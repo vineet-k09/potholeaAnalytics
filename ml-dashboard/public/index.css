@@ -8,6 +8,7 @@ body {
 section {
     max-width: 60vw;
     margin: 80px auto;
+    background-color: #00000070;
 }
 
 #map {
@@ -15,12 +16,13 @@ section {
     height: 500px;
     margin: auto;
     border: 2px solid black;
+    border-radius: 20px;
 }
 
 nav ul {
     list-style-type: none;
     display: flex;
-    gap: 20px;
+    gap: 40px;
 }
 
 nav ul li a {
@@ -43,6 +45,8 @@ nav ul li a:hover {
     border-radius: 8px;
     width: 30%;
     text-align: center;
+    padding: 10px;
+    gap: 10px;
 }
 
 .open {
@@ -88,7 +92,7 @@ center {
 .main {
     max-width: 90vw;
     margin: 0 auto;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 20px;
 }
 
