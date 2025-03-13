@@ -42,4 +42,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             radius: 500
         }).bindPopup(`<b>${location.description}</b><br>Severity: ${location.severity}`).addTo(map);
     });
+
+
 });
