@@ -1,9 +1,10 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: rgb(20, 41, 49);
+    background-color: rgb(34, 82, 100);
     color: white;
 }
+
 
 section {
     max-width: 60vw;
